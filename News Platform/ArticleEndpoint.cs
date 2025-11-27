@@ -318,6 +318,14 @@ namespace News_Platform
             await using var connection = new SqlConnection(connectionString);
             await connection.OpenAsync();
 
+            {
+                var source = await NewsSourceRepository.GetSourceByIdAsync(connection, request.SourceId);
+                if (source is null)
+                {
+                    return Results.BadRequest(new { error = $"NewsSource with Id={request.SourceId} does not exist." });
+                }
+            }
+
             const string sql = @"
                     UPDATE Article
                     SET SourceId = @SourceId,
