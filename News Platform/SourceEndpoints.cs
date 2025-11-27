@@ -30,8 +30,8 @@ namespace News_Platform
     {
         public static readonly string[] AllowedPoliticalLeanings =
         {
-            "pro-EU",
-            "pro-Russia",
+            "pro-eu",
+            "pro-russia",
             "neutral",
             "unknown"
         };

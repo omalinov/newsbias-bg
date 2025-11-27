@@ -7,7 +7,7 @@ CREATE TABLE NewsSource (
     Url NVARCHAR(500) NOT NULL,
     Category NVARCHAR(100) NULL,
     IsActive BIT NOT NULL DEFAULT 1,
-    PoliticalLeaning NVARCHAR(20) NOT NULL DEFAULT 'unknown', -- 'pro-EU', 'pro-Russia', 'neutral', 'unknown'
+    PoliticalLeaning NVARCHAR(20) NOT NULL DEFAULT 'unknown', -- 'pro-eu', 'pro-russia', 'neutral', 'unknown'
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
 );
 
@@ -32,7 +32,7 @@ CREATE TABLE AppUser (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(200) NOT NULL,
     Email NVARCHAR(200) NOT NULL UNIQUE,
-	PoliticalPreference NVARCHAR(20) NOT NULL DEFAULT 'none'
+	PoliticalPreference NVARCHAR(20) NOT NULL DEFAULT 'none', -- 'none', 'pro-eu', 'pro-russia', 'neutral', 'unknown'
 );
 
 CREATE TABLE UserPreference (
