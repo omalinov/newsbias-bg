@@ -42,6 +42,7 @@ namespace News_Platform
 
             app.MapSourceEndpoints(connectionString);
             app.MapArticleEndpoints(connectionString);
+            app.MapAppUserEndpoints(connectionString);
 
             app.Run();
         }
