@@ -45,6 +45,7 @@ namespace News_Platform
             app.MapAppUserEndpoints(connectionString);
             app.MapUserPreferenceEndpoints(connectionString);
             app.MapBiasEndpoints(connectionString);
+            app.MapUserFeedEndpoints(connectionString);
 
             app.Run();
         }
