@@ -156,6 +156,24 @@ namespace News_Platform
                 return false;
             }
 
+            if (NormalizedTitle.Length > 500)
+            {
+                error = "Title must be maximum 500 chars.";
+                return false;
+            }
+
+            if (NormalizedUrl != null && NormalizedUrl.Length > 500)
+            {
+                error = "Url must be maximum 500 chars.";
+                return false;
+            }
+
+            if (NormalizedTopic != null && NormalizedTopic.Length > 100)
+            {
+                error = "Topic must be maximum 500 chars.";
+                return false;
+            }
+
             if (!ArticleConstants.AllowedTones.Contains(NormalizedTone))
             {
                 error = "Invalid Tone. Allowed values: positive, negative, neutral, sensationalist, unknown.";
@@ -171,6 +189,7 @@ namespace News_Platform
             error = "";
             return true;
         }
+
         public void FillSqlParameters(SqlCommand command)
         {
             command.Parameters.AddWithValue("@SourceId", SourceId);
@@ -184,7 +203,7 @@ namespace News_Platform
             command.Parameters.AddWithValue("@FactualityLevel", NormalizedFactualityLevel);
         }
     }
-    public static class ArticleEndpoint
+    public static class ArticleEndpoints
     {
         public static void MapArticleEndpoints(this WebApplication app, string connectionString)
         {
