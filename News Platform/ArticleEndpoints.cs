@@ -170,7 +170,7 @@ namespace News_Platform
 
             if (NormalizedTopic != null && NormalizedTopic.Length > 100)
             {
-                error = "Topic must be maximum 500 chars.";
+                error = "Topic must be maximum 100 chars.";
                 return false;
             }
 
