@@ -32,7 +32,7 @@ CREATE TABLE AppUser (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(200) NOT NULL,
     Email NVARCHAR(200) NOT NULL UNIQUE,
-	PoliticalPreference NVARCHAR(20) NOT NULL DEFAULT 'none', -- 'none', 'pro-eu', 'pro-russia', 'neutral', 'unknown'
+	PoliticalPreference NVARCHAR(20) NOT NULL DEFAULT 'none' -- 'none', 'pro-eu', 'pro-russia', 'neutral', 'unknown'
 );
 
 CREATE TABLE UserPreference (
