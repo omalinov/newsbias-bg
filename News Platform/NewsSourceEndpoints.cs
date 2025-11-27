@@ -98,15 +98,33 @@ namespace News_Platform
                 return false;
             }
 
+            if (NormalizedName.Length > 200)
+            {
+                error = "Name must be maximum 200 chars.";
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(Url))
             {
                 error = "Url is required.";
                 return false;
             }
 
+            if (NormalizedUrl.Length > 500)
+            {
+                error = "Url must be maximum 500 chars.";
+                return false;
+            }
+
+            if (NormalizedCategory != null && NormalizedCategory.Length > 100)
+            {
+                error = "Category must be maximum 100 chars.";
+                return false;
+            }
+
             if (!NewsSourceConstants.AllowedPoliticalLeanings.Contains(NormalizedPoliticalLeaning))
             {
-                error = "Invalid PoliticalLeaning. Allowed values: pro-EU, pro-Russia, neutral, unknown.";
+                error = "Invalid PoliticalLeaning. Allowed values: pro-eu, pro-russia, neutral, unknown.";
                 return false;
             }
 
@@ -123,7 +141,7 @@ namespace News_Platform
         }
     }
 
-    public static class SourceEndpoints
+    public static class NewsSourceEndpoints
     {
         public static void MapSourceEndpoints(this WebApplication app, string connectionString)
         {
