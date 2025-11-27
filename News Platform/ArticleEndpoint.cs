@@ -206,7 +206,7 @@ namespace News_Platform
             await connection.OpenAsync();
 
             {
-                var source = await SourceEndpoints.GetSourceByIdAsync(connection, request.SourceId);
+                var source = await NewsSourceRepository.GetSourceByIdAsync(connection, request.SourceId);
                 if (source is null)
                 {
                     return Results.BadRequest(new { error = $"NewsSource with Id={request.SourceId} does not exist." });

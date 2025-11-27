@@ -193,32 +193,12 @@ namespace News_Platform
             return Results.Ok(sources);
         }
 
-        public static async Task<NewsSourceDto> GetSourceByIdAsync(SqlConnection connection, int id)
-        {
-            const string sql = @"
-                SELECT Id, Name, Url, Category, IsActive, PoliticalLeaning, CreatedAt
-                FROM NewsSource
-                WHERE Id = @Id";
-
-            await using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@Id", id);
-
-            await using var reader = await command.ExecuteReaderAsync();
-
-            if (!await reader.ReadAsync())
-            {
-                return null;
-            }
-
-            return NewsSourceDto.FromReader(reader);
-        }
-
         private static async Task<IResult> ReadSingleSourceAsync(string connectionString, int id)
         {
             await using var connection = new SqlConnection(connectionString);
             await connection.OpenAsync();
 
-            var source = await SourceEndpoints.GetSourceByIdAsync(connection, id);
+            var source = await NewsSourceRepository.GetSourceByIdAsync(connection, id);
             if (source is null)
             {
                 return Results.NotFound(new { error = $"NewsSource with Id={id} not found." });
